@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.mobile-container {
+  width: 400px;
+  border: 3px solid black;
+}
+
+img {
+  max-width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+header input {
+  border: none;
+  border-radius: 2px;
+  background-color: #eee;
+  width: 200px;
+  padding: 0.2rem 1rem;
+  font-family: inherit;
+}
+
+header button {
+  background-color: transparent;
+  border: none;
+  color: #aaa;
+  padding: 0.2rem 1rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.fav_recipe-container {
+  background-color: rgb(169, 207, 223);
+}
+
+.fav_recipe-container h3 {
+  text-align: center;
+}
+
+.fav_meal-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.fav_meal-container li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fav_meal-container li img {
+  border: 2px solid #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+ul li span {
+  font-size: 0.8rem;
+}
