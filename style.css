@@ -15,7 +15,8 @@ body {
 
 .mobile-container {
   width: 400px;
-  border: 3px solid black;
+
+  box-shadow: 0 0 10px 2px #a5a5a5;
 }
 
 img {
@@ -51,6 +52,7 @@ header button {
 
 .fav_recipe-container {
   background-color: rgb(169, 207, 223);
+  padding: 10px 2px;
 }
 
 .fav_recipe-container h3 {
@@ -60,8 +62,11 @@ header button {
 .fav_meal-container {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.5rem;
+  list-style: none;
+  overflow: auto;
 }
 
 .fav_meal-container li {
@@ -69,16 +74,68 @@ header button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 85px;
 }
 
 .fav_meal-container li img {
   border: 2px solid #fff;
-  height: 50px;
-  width: 50px;
+  height: 90%;
+  width: 90%;
   border-radius: 50%;
   object-fit: cover;
 }
 
-ul li span {
-  font-size: 0.8rem;
+.fav_meal-container li span {
+  font-size: 0.7rem;
+}
+
+.meals-container {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+
+  margin: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px 2px #a5a5a5;
+}
+
+.meals-container .meal-header {
+  position: relative;
+}
+
+.meal-header span {
+  position: absolute;
+  background-color: #fff;
+  padding: 5px;
+  top: 15px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.meals-container .meal-header img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.meals-container .meal-description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.meal-description h4 {
+  margin: 0;
+}
+
+.meal-description .fav-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.meal-description .fav-btn.active {
+  color: red;
 }
