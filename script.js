@@ -1,5 +1,7 @@
 const mealsContainer = document.getElementById("meals-container");
 
+const favMealContainer = document.getElementById("fav_meal-container");
+
 async function getRandomMeal() {
   const resp = await fetch(
     "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -14,8 +16,14 @@ async function getRandomMeal() {
 
 async function getMealById(id) {
   const resp = await fetch(
-    `www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   );
+
+  const data = await resp.json();
+
+  const mealById = data.meals[0];
+
+  return mealById;
 }
 
 async function getMealBySearch(name) {
@@ -50,14 +58,64 @@ function displayMeal(randomMeal) {
 
     if (!clicked) return;
 
-    clicked.classList.toggle("active");
+    if (clicked.classList.contains("active")) {
+      clicked.classList.remove("active");
+      removeMealFromLS(randomMeal.idMeal);
+    } else {
+      clicked.classList.add("active");
+      addMealToLS(randomMeal.idMeal);
+    }
+    favMealContainer.innerHTML = "";
+    fetchFavMeals();
   });
 }
 
 getRandomMeal();
 
-function addMealToLS() {}
+function addMealToLS(mealId) {
+  const mealIdArr = getMealFromLS();
 
-function getMealFromLS() {}
+  localStorage.setItem("mealIdArr", JSON.stringify([...mealIdArr, mealId]));
+}
 
-function removeMealFromLS() {}
+function getMealFromLS() {
+  const storedMealId = JSON.parse(localStorage.getItem("mealIdArr"));
+
+  return storedMealId === null ? [] : storedMealId;
+}
+
+function removeMealFromLS(mealId) {
+  const storedMealId = getMealFromLS();
+
+  localStorage.setItem(
+    "mealIdArr",
+    JSON.stringify(storedMealId.filter((id) => id !== mealId))
+  );
+}
+
+async function fetchFavMeals() {
+  const favMealIds = getMealFromLS();
+
+  console.log(favMealIds);
+
+  for (let i = 0; i < favMealIds.length; i++) {
+    const favMealId = favMealIds[i];
+    const favMeal = await getMealById(favMealId);
+
+    addMealToFav(favMeal);
+  }
+}
+
+function addMealToFav(favMeal) {
+  const mealData = `
+        <li>
+            <img
+              src="${favMeal.strMealThumb}"
+              alt="${favMeal.strMeal}"
+            />
+            <span>${favMeal.strMeal}</span>
+        </li>
+  `;
+
+  favMealContainer.insertAdjacentHTML("beforeend", mealData);
+}

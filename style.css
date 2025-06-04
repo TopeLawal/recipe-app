@@ -87,6 +87,7 @@ header button {
 
 .fav_meal-container li span {
   font-size: 0.7rem;
+  text-align: center;
 }
 
 .meals-container {
